@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="registration-form">
+      <h1>User Registration form</h1>
+      <form id="registrationForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <div class="user-list">
+      <h2>Registered Users</h2>
+      <table id="userList">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Function to display registered users
+    function displayRegisteredUsers() {
+      var userList = document.querySelector('#userList tbody');
+      userList.innerHTML = ''; // Clear previous entries
+
+      // Retrieve stored data from local storage
+      var users = JSON.parse(localStorage.getItem('users')) || [];
+
+      // Display each user
+      users.forEach(function(user, index) {
+        var row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${user.username}</td>
+          <td>${user.email}</td>
+        `;
+        userList.appendChild(row);
+      });
+    }
+
+    // Display registered users on page load
+    displayRegisteredUsers();
+
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      var formData = new FormData(this);
+
+      // Store form data in local storage
+      var users = JSON.parse(localStorage.getItem('users')) || [];
+      var newUser = {
+        username: formData.get('username'),
+        email: formData.get('email')
+      };
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Display registered users after adding new user
+      displayRegisteredUsers();
+
+      // Clear form fields
+      this.reset();
+    });
+  </script>
+</body>
+</html>

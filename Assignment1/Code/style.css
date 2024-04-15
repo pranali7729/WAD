@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  /* background: url('loginBG.jpg') no-repeat center center fixed; */
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(217, 197, 235);
+  height: 100vh;
+}
+.container {
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(255, 39, 201, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  overflow: hidden;
+}
+.registration-form {
+  flex: 1;
+  padding: 40px;
+}
+.registration-form h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.registration-form label {
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.registration-form button {
+  background-color: #633c68;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.registration-form button:hover {
+  background-color: #633c68;;
+}
+.user-list {
+
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 40px;
+}
+.user-list h2 {
+  font-size:xx-large;
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.user-list th,
+.user-list td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 16px;
+}
+.user-list th {
+  background-color: #633c68;;
+  color: #fff;
+}
+.user-list tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
