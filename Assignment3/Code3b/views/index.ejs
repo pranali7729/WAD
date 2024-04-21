@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset default margin and padding */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Body styles */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        /* Table styles */
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Icon styles */
+        
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .action-icons i {
+            margin-right: 5px;
+            cursor: pointer;
+            color: #007bff;
+        }
+        
+        .action-icons i:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <% if (users!="") { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial no</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach((user,index) => { %>
+                    <tr>
+                        <td>
+                            <%= index+1 %>
+                        </td>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <a href="/edit/<%= user._id %>"><i class="fas fa-edit"></i></a>
+                            <a href="/delete/<%= user._id %>"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <% } else{ %>
+            <h1>NO USER FOUND</h1>
+            <% }  %>
+</body>
+
+</html>
