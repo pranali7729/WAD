@@ -1,0 +1,148 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Photo Gallery</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #f0f0f0; /* Light gray background */
+          background-image: url('https://www.transparenttextures.com/patterns/45-degree-fabric-light.png'); /* Subtle fabric texture */
+          font-family: Arial, sans-serif;
+        }
+        #imageContainer {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        #imageContainer img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+        #hideButton {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #ff5757; /* Red color for button */
+          color: white;
+          padding: 10px 20px;
+          border-radius: 20px; /* Rounded corners */
+          border: none;
+          cursor: pointer;
+          outline: none;
+        }
+        nav {
+          background-color: #333; /* Dark background for navbar */
+          padding: 10px;
+          text-align: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 999;
+        }
+        nav a {
+          color: white;
+          text-decoration: none;
+          padding: 10px 20px;
+          margin: 0 5px;
+        }
+        @media screen and (max-width: 768px) {
+          nav a {
+            display: block;
+            margin-bottom: 10px;
+          }
+        }
+      </style>
+      </head>
+      <body>
+      
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Gallery</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+      
+      <div id="imageContainer">
+        <img id="randomImage" src="" alt="Random Image">
+      </div>
+      
+      <button id="hideButton">Hide Content</button>
+      
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(function() {
+          // Array of image URLs
+          var images = [
+            
+    "https://source.unsplash.com/featured/?sky",
+      "https://source.unsplash.com/featured/?peapock",
+      "https://source.unsplash.com/featured/?home",
+      "https://source.unsplash.com/featured/?water",
+      "https://source.unsplash.com/featured/?dog",
+      "https://source.unsplash.com/featured/?cat",
+      "https://source.unsplash.com/featured/?tree",
+      
+          ];
+      
+          // Function to get a random image URL
+          function getRandomImage() {
+            return images[Math.floor(Math.random() * images.length)];
+          }
+      
+          // Load a random image on page load
+          $("#randomImage").attr("src", getRandomImage());
+      
+          // Swipe functionality
+          var touchStartX = 0;
+          var touchStartY = 0;
+      
+          $(document).on("touchstart", function(event) {
+            touchStartX = event.originalEvent.touches[0].clientX;
+            touchStartY = event.originalEvent.touches[0].clientY;
+          });
+      
+          $(document).on("touchend", function(event) {
+            var touchEndX = event.originalEvent.changedTouches[0].clientX;
+            var touchEndY = event.originalEvent.changedTouches[0].clientY;
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = touchEndY - touchStartY;
+      
+            // Determine swipe direction
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+              if (deltaX > 0) {
+                // Swipe right
+                $("#randomImage").attr("src", getRandomImage());
+              } else {
+                // Swipe left
+                $("#randomImage").attr("src", getRandomImage());
+              }
+            } else {
+              if (deltaY > 0) {
+                // Swipe down
+                $("#randomImage").attr("src", getRandomImage());
+              } else {
+                // Swipe up
+                $("#randomImage").attr("src", getRandomImage());
+              }
+            }
+          });
+      
+          // Hide content button functionality
+          $("#hideButton").click(function() {
+            $("#imageContainer").hide();
+            $(this).hide();
+          });
+        });
+      </script>
+      
+      </body>
+      </html>
+      
